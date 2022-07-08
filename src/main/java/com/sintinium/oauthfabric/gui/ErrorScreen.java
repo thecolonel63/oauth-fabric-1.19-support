@@ -7,7 +7,6 @@ import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -19,13 +18,13 @@ public class ErrorScreen extends OAuthScreen {
     private boolean isInfo = false;
 
     public ErrorScreen(boolean isMs, String message) {
-        super(new LiteralText("Error logging into " + (isMs ? "Microsoft." : "Mojang.")));
+        super(Text.literal("Error logging into " + (isMs ? "Microsoft." : "Mojang.")));
         this.message = message;
         System.err.println(message);
     }
 
     public ErrorScreen(boolean isMs, Throwable e) {
-        super(new LiteralText("Error logging into " + (isMs ? "Microsoft." : "Mojang.")));
+        super(Text.literal("Error logging into " + (isMs ? "Microsoft." : "Mojang.")));
         this.e = e;
         e.printStackTrace();
     }
@@ -36,7 +35,7 @@ public class ErrorScreen extends OAuthScreen {
 
     @Override
     protected void init() {
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, new LiteralText("Cancel"), p_onPress_1_ -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, Text.literal("Cancel"), p_onPress_1_ -> {
             setScreen(new MultiplayerScreen(new TitleScreen()));
         }));
     }
@@ -59,7 +58,7 @@ public class ErrorScreen extends OAuthScreen {
             drawCenteredText(p_230430_1_, MinecraftClient.getInstance().textRenderer, "If you believe this is a bug please create an issue at", this.width / 2, this.height / 2 - 12, 0xFFFFFF);
             drawCenteredText(p_230430_1_, MinecraftClient.getInstance().textRenderer, "https://github.com/Sintinium/oauth with your latest log file.", this.width / 2, this.height / 2, 0xFFFFFF);
         } else {
-            Text github = new LiteralText("Please create an issue at https://github.com/Sintinium/oauth with your log file.")
+            Text github = Text.literal("Please create an issue at https://github.com/Sintinium/oauth with your log file.")
                     .setStyle(Style.EMPTY.withUnderline(true));
             drawCenteredText(p_230430_1_, MinecraftClient.getInstance().textRenderer, "An error occurred. This could be a bug.", this.width / 2, this.height / 2 - 40, 0xFFFFFF);
             drawCenteredText(p_230430_1_, MinecraftClient.getInstance().textRenderer, github, this.width / 2, this.height / 2 - 28, 0xFFFFFF);

@@ -14,7 +14,7 @@ import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -28,7 +28,7 @@ public class ProfileSelectionScreen extends OAuthScreen {
     private ProfileEntry initialEntry;
 
     public ProfileSelectionScreen() {
-        super(new LiteralText("Profiles"));
+        super(Text.literal("Profiles"));
     }
 
     public ProfileSelectionScreen(ProfileEntry initialEntry) {
@@ -204,7 +204,7 @@ public class ProfileSelectionScreen extends OAuthScreen {
     }
 
     private ButtonWidget addButton(int x, int y, int width, String text, ButtonWidget.PressAction onPress) {
-        return this.addDrawableChild(new ButtonWidget(x, y, width, 20, new LiteralText(text), onPress));
+        return this.addDrawableChild(new ButtonWidget(x, y, width, 20, Text.literal(text), onPress));
     }
 
     @Override

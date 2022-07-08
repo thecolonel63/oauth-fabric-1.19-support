@@ -10,7 +10,6 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
@@ -114,7 +113,7 @@ public class ProfileEntry extends AlwaysSelectedEntryListWidget.Entry<ProfileEnt
 
     @Override
     public @NotNull Text getNarration() {
-        return new LiteralText("");
+        return Text.literal("");
     }
 
     private static class ArrowButton {

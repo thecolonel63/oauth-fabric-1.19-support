@@ -7,7 +7,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,16 +25,16 @@ public class MultiplayerScreenMixin extends Screen {
         try {
 //            Method addButtonMethod = ObfuscationReflectionHelper.findMethod(Screen.class, "addButton", Widget.class);
 //            Method addButtonMethod = ObfuscationReflectionHelper.findMethod(Screen.class, "func_230480_a_", Widget.class);
-            addDrawableChild(new ButtonWidget(10, 6, 66, 20, new LiteralText("OAuth Login"), p_onPress_1_ -> MinecraftClient.getInstance().setScreen(new ProfileSelectionScreen())));
+            addDrawableChild(new ButtonWidget(10, 6, 66, 20, Text.literal("OAuth Login"), p_onPress_1_ -> MinecraftClient.getInstance().setScreen(new ProfileSelectionScreen())));
             final TextWidget textWidget = new TextWidget(10 + 66 + 3, 6, 0, 20, "Status: loading");
-            textWidget.setColor( 0xFFFFFF);
+            textWidget.setColor(0xFFFFFF);
             Thread thread = new Thread(() -> {
                 boolean isOnline = LoginUtil.isOnline();
                 if (isOnline) {
-                    textWidget.setMessage(new LiteralText("Status: online"));
+                    textWidget.setMessage(Text.literal("Status: online"));
                     textWidget.setColor(0x55FF55);
                 } else {
-                    textWidget.setMessage(new LiteralText("Status: offline"));
+                    textWidget.setMessage(Text.literal("Status: offline"));
                     textWidget.setColor(0xFF5555);
                 }
             }, "Oauth status");

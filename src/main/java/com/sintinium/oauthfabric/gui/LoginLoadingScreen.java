@@ -4,7 +4,7 @@ import com.sintinium.oauthfabric.gui.profile.ProfileSelectionScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -20,7 +20,7 @@ public class LoginLoadingScreen extends OAuthScreen {
     private final AtomicReference<String> updateText = new AtomicReference<>();
 
     public LoginLoadingScreen(Runnable onCancel, boolean isMicrosoft) {
-        super(new LiteralText("Logging in"));
+        super(Text.literal("Logging in"));
         this.onCancel = onCancel;
         this.isMicrosoft = isMicrosoft;
 
@@ -37,7 +37,7 @@ public class LoginLoadingScreen extends OAuthScreen {
 
     @Override
     protected void init() {
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, new LiteralText("Cancel"), (p_213029_1_) -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, Text.literal("Cancel"), (p_213029_1_) -> {
             onCancel.run();
             setScreen(new ProfileSelectionScreen());
         }));

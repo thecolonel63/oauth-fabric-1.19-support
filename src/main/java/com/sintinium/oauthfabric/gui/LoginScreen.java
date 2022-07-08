@@ -13,7 +13,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,7 +30,7 @@ public class LoginScreen extends OAuthScreen {
     private final List<Runnable> toRun = new CopyOnWriteArrayList<>();
 
     public LoginScreen() {
-        super(new LiteralText("OAuth Login"));
+        super(Text.literal("OAuth Login"));
     }
 
     public void tick() {
@@ -52,18 +52,18 @@ public class LoginScreen extends OAuthScreen {
         MinecraftClient.getInstance().keyboard.setRepeatEvents(true);
 
 
-        this.usernameWidget = new TextFieldWidget(this.textRenderer, this.width / 2 - 100, this.height / 2 - 60, 200, 20, new LiteralText("Username/Email"));
+        this.usernameWidget = new TextFieldWidget(this.textRenderer, this.width / 2 - 100, this.height / 2 - 60, 200, 20, Text.literal("Username/Email"));
         this.usernameWidget.changeFocus(true);
         this.usernameWidget.setChangedListener(this::onEdited);
 
-        this.passwordWidget = new PasswordBox(this.textRenderer, this.width / 2 - 100, this.height / 2 - 20, 200, 20, new LiteralText("Password"));
+        this.passwordWidget = new PasswordBox(this.textRenderer, this.width / 2 - 100, this.height / 2 - 20, 200, 20, Text.literal("Password"));
         this.passwordWidget.setMaxLength(128);
         this.passwordWidget.setChangedListener(this::onEdited);
 
         this.addSelectableChild(this.usernameWidget);
         this.addSelectableChild(this.passwordWidget);
 
-        this.mojangLoginButton = this.addDrawableChild(new ResponsiveButton(this.width / 2 - 100, this.height / 2 + 36, 200, 20, new LiteralText("Add Profile"), (b) -> {
+        this.mojangLoginButton = this.addDrawableChild(new ResponsiveButton(this.width / 2 - 100, this.height / 2 + 36, 200, 20, Text.literal("Add Profile"), (b) -> {
             Thread thread = new Thread(() -> {
                 if (usernameWidget.getText().isEmpty()) {
                     toRun.add(() -> this.status.set("Missing username!"));
@@ -99,9 +99,9 @@ public class LoginScreen extends OAuthScreen {
             }, "Oauth mojang");
             thread.setDaemon(true);
             thread.start();
-        }, this::updateLoginButton, () -> this.mojangLoginButton.setMessage(new LiteralText("Add Profile"))));
+        }, this::updateLoginButton, () -> this.mojangLoginButton.setMessage(Text.literal("Add Profile"))));
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, new LiteralText("Cancel"), (p_213029_1_) -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, Text.literal("Cancel"), (p_213029_1_) -> {
             setScreen(new ProfileSelectionScreen());
         }));
 
@@ -122,9 +122,9 @@ public class LoginScreen extends OAuthScreen {
 
     private void updateLoginButton() {
         if (this.passwordWidget.getText().isEmpty()) {
-            this.mojangLoginButton.setMessage(new LiteralText("Add Offline Profile"));
+            this.mojangLoginButton.setMessage(Text.literal("Add Offline Profile"));
         } else {
-            this.mojangLoginButton.setMessage(new LiteralText("Add Profile"));
+            this.mojangLoginButton.setMessage(Text.literal("Add Profile"));
         }
     }
 

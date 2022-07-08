@@ -3,7 +3,6 @@ package com.sintinium.oauthfabric.gui;
 import com.sintinium.oauthfabric.gui.profile.ProfileSelectionScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
@@ -15,19 +14,19 @@ public class LoginTypeScreen extends OAuthScreen {
     private final Runnable onMicrosoft;
 
     public LoginTypeScreen(Runnable onMojang, Runnable onMicrosoft) {
-        super(new LiteralText("Select Account Type"));
+        super(Text.literal("Select Account Type"));
         this.onMojang = onMojang;
         this.onMicrosoft = onMicrosoft;
     }
 
     @Override
     protected void init() {
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 - 20 - 2, 200, 20, new LiteralText("Mojang Login"), p_onPress_1_ -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 - 20 - 2, 200, 20, Text.literal("Mojang Login"), p_onPress_1_ -> {
             this.onMojang.run();
         }));
         final List<Text> msTooltip = new ArrayList<>();
-        msTooltip.add(new LiteralText("Will open your browser to login to Microsoft."));
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 2, 200 /*- 52*/, 20, new LiteralText("Microsoft Login"), (p_213031_1_) -> {
+        msTooltip.add(Text.literal("Will open your browser to login to Microsoft."));
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 2, 200 /*- 52*/, 20, Text.literal("Microsoft Login"), (p_213031_1_) -> {
 //            final MicrosoftLogin login = new MicrosoftLogin();
 //            LoginLoadingScreen loadingScreen = new LoginLoadingScreen(new ProfileSelectionScreen(), this, login::cancelLogin, true);
 //            login.setUpdateStatusConsumer(loadingScreen::updateText);
@@ -58,7 +57,7 @@ public class LoginTypeScreen extends OAuthScreen {
 //            );
 //        }));
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, new LiteralText("Cancel"), (p_213029_1_) -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 60, 200, 20, Text.literal("Cancel"), (p_213029_1_) -> {
             setScreen(new ProfileSelectionScreen());
         }));
     }
